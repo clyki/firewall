@@ -1,3 +1,23 @@
+<?php
+$error = false;
+if(isset($_POST['login'])){
+	$username = preg_replace('/[^A-Za-z]/', '', $_POST['username']);
+	$password = md5($_POST['password']);
+	if(file_exists('users/' . $username . '.xml')){
+		$xml = new SimpleXMLElement('users/' . $username . '.xml', 0, true);
+		if($password == $xml->password){
+			session_start();
+			$_SESSION['username'] = $username;
+			header('Location: index.php');
+			die;
+		}
+	}
+	$error = true;
+}
+?>
+
+
+
 
 <!DOCTYPE html>
 <html>
@@ -131,12 +151,12 @@ html {
 
   <div class="col-3 col-s-12">
     <div class="aside">
-      <h2>What?</h2>
-      <p>Chania is a city on the island of Crete.</p>
-      <h2>Where?</h2>
-      <p>Crete is a Greek island in the Mediterranean Sea.</p>
-      <h2>How?</h2>
-      <p>You can reach Chania airport from all over Europe.</p>
+      <h2>&nbsp;</h2>
+      <p>&nbsp;</p>
+      <h2>&nbsp;</h2>
+      <p>&nbsp;</p>
+      <h2>&nbsp;</h2>
+      <p>&nbsp;</p>
     </div>
   </div>
 </div>
